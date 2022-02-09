@@ -86,7 +86,7 @@ const RegisterScreen = () => {
                                     </div>
                                     <div className="col col-md-4">
                                     
-                                        {/* <p className="me-4 text-white">Create Account</p> */}
+                                     
                                     </div>
                         </div>
                         </Form>
