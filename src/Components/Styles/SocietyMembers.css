@@ -1,0 +1,35 @@
+.ver-icon{
+    background-color: #eee;
+    padding: 2rem;
+    border-radius: 100%;
+    font-size: 3rem;
+    color: #0225A2;
+}
+
+.info-icon{
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+}
+
+.mem-icon{
+    display: inline-block;
+}
+
+.mem-email{
+    font-size: 0.8rem;
+    color: #0225A2;
+    margin-top: -0.5rem;
+}
+
+.member-con{
+    position: relative;
+    display: flex;
+}
+
+.mem-info-con{
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    font-weight: bold;
+    color: #000;
+}

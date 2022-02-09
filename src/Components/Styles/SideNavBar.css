@@ -1,0 +1,97 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+body {
+	background-image: none;
+}
+  
+.con{
+	background-color: RGBA(2,37,161,0.36);
+	width: 80%;
+	height: 100%;
+	margin: 2%;
+	color: white;
+	border-radius: 2rem;
+	padding-bottom: 5%;
+	padding-top: 5%;
+	padding-left: 2%;
+	padding-right: 2%;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	position: relative;
+	display: flex;
+}
+
+/* .list-down{
+	margin-top: -2rem;
+} */
+
+.logo{
+	position: absolute;
+	top: 0;
+	object-fit: fill;
+	margin: auto;
+	width: 30%;
+}
+.nav-menu{
+	width: 100%;
+	text-align: start;
+	justify-self: start;
+	justify-content: start;
+	align-items: flex-start;
+	align-self: start;
+	padding: 1%;
+	position: relative;
+	margin-top: 7rem;
+	margin-left: -4rem;
+	margin-bottom: 4rem;
+}
+
+.icon{
+	padding: 0.2%;
+	display: inline-block;
+	list-style: none;
+	text-transform:uppercase;
+	text-decoration: none;
+	text-decoration-color: white;
+}
+
+a{
+	text-transform:uppercase;
+	text-decoration: none;
+	text-decoration-color: white;
+	text-align: end;
+	color: white;
+	font-weight: bold;
+	font-size: 0.7rem;
+}
+.nav-icons{
+	color: white;
+	font-size: 1.5rem;
+	text-align: start;
+	margin-right: 0.4rem;
+	line-height: 0%;
+}
+
+li{
+	padding: 0;
+	margin-top: -2rem;
+}
+
+.logout-btn-con{
+	position: absolute;
+	bottom: 2rem;
+	width: 60%;
+}
+
+.icons{
+	display: inline-block;
+	padding: 0.2rem;
+}
+
+.logout{
+	width: 100%;
+}

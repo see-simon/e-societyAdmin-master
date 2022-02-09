@@ -1,0 +1,48 @@
+.not-icon{
+    background-color: #0225A2;
+    padding: 0.8rem;
+    border-radius: 100%;
+}
+
+.header{
+    margin-top: -2rem;
+}
+
+.society-det-con{
+    border: none;
+}
+
+.soc-icon{
+    font-size: 1.5rem;
+    color: #0225A2;
+    display: inline-block;
+}
+
+.society-name{
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.icon{
+
+    display: inline-block;
+}
+
+.icons{
+    margin-top: -2rem;
+    text-align: justify;
+    justify-content: center;
+    align-items: center;
+}
+
+.soc-icon-desc{
+    font-size: 1.5rem;
+    color: #0225A2;
+    display: inline-block;
+}
+
+.details{
+    font-size: 0.6rem;
+}

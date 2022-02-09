@@ -1,0 +1,34 @@
+.container{
+    width: 100px;
+    height: 100px;
+    color: #fff;
+    margin: 0 auto
+}
+
+.name{
+    margin-top: -3rem;
+    text-transform: capitalize;
+    color: #000;
+}
+
+.events-con{
+    background-color: #fff;
+
+}
+
+.nav-in{
+    margin-top: -5rem;
+}
+
+.list-events{
+    color: #000;
+    display: inline-block;
+}
+
+.links{
+    margin-left: -2rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+

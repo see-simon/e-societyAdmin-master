@@ -1,0 +1,20 @@
+.img-con{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.inputs-con{
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.acc-icons-edit{
+    position: absolute;
+    padding: 0.3rem;
+    margin-left: 0.5rem;
+    font-size: 1.2rem;
+    color: grey;
+    right: 16rem;
+    margin-top:-2.4rem;
+}

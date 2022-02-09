@@ -1,0 +1,9 @@
+body{
+  background-image: none;
+  background-color: white;
+}
+
+.info-con{
+  margin-left: -10rem;
+  position: absolute;
+}
