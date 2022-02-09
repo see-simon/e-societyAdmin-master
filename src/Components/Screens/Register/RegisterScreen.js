@@ -2,7 +2,7 @@ import React,{useRef,useState} from "react";
 import Logo from '../../Images/logo.png';
 import '../../Styles/RegisterScreen.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container,Card,Form,Button} from 'react-bootstrap';
+import { Container,Card,Form,Button,Alert} from 'react-bootstrap';
 
 import { useAuth } from "../../../contexts/AuthContext";
 import { Link,useHistory } from 'react-router-dom'
@@ -13,6 +13,23 @@ const RegisterScreen = () => {
     const passwordConfirmRef = useRef()
     const {signup} = useAuth()
     const [error,setError]=useState('')
+    const history = useHistory()
+
+ const  handleSubmit = async (e)=>{
+        e.preventDefault()
+        if(passwordRef.current.value !== passwordConfirmRef.current.value){
+          return setError('password do not match')
+        }
+        try{
+          setError('')
+          
+          await signup(emailRef.current.value,passwordRef.current.value)
+          history.push('/Forgotpassword')
+        } catch{
+          setError('failed to create an account')
+        }
+        
+      }
   return <>
 
     <Container className="p-2 main-login-con w-100 h-100" >
@@ -24,18 +41,20 @@ const RegisterScreen = () => {
                             <div className="justify-content-center text-center align-items-center info-con">
                                 <hr className="p-0 m-0"/>
                                     <p>Please enter your credentials to get started with our application</p>
+                                    {error && <Alert variant="danger">{error}</Alert>}
                                 <hr className="p-0 m-0"/>
                             </div>
                            
                             <div className="inputs mt-3 justify-content-center align-items-center tex-center">
-                                <Form className="form pe-5 ps-5 mt-4">
+                                <Form className="form pe-5 ps-5 mt-4" onSubmit={handleSubmit}>
                                     <div className="inputs-con">
                                         
                                         <div className="row">
                                             <div className="col col-md-6">
                                                 <div className="mb-4 input-in">
                                                     <div className="acc-icon-input"><i class="bi bi-envelope-fill"></i></div>
-                                                    <input type="email" class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter Email Address'></input>
+                                                    <input type="email" required ref={emailRef}
+                                                     class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter Email Address'></input>
                                                 </div>
                                             </div>
                                             <div className="col col-md-6">
@@ -65,13 +84,15 @@ const RegisterScreen = () => {
                                             <div className="col col-md-6">
                                                 <div className="mb-0  input-in">
                                                     <div className="acc-icon-input"><i class="bi bi-file-person-fill"></i></div>
-                                                    <input type="password" class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter Password'></input>
+                                                    <input type="password" required ref={passwordRef}
+                                                    class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter Password'></input>
                                                 </div>
                                             </div>
                                             <div className="col col-md-6">
                                                 <div className="mb-0 input-in">
                                                     <div className="acc-icon-input"><i class="bi bi-lock-fill"></i></div>
-                                                    <input type="password" class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Password Confirm'></input>
+                                                    <input type="password" required ref={passwordConfirmRef}
+                                                    class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Password Confirm'></input>
                                                 </div>
                                             </div>
                                         </div>
