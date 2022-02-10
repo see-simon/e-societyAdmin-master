@@ -6,6 +6,8 @@ import '../../../Styles/AddEvents.css'
 import CreateEvents from '../EventsNavScreens/CreateEventsScreen/CreateEvents';
 import EventReports from '../EventsNavScreens/EventsReportsScreen/EventReports';
 import ManageEvents from '../EventsNavScreens/ManageEventsScreen/ManageEvents';
+
+import { useAuth } from '../../../../contexts/AuthContext';
 const AddEventsScreen = () => {
     
   return <>

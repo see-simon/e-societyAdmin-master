@@ -1,5 +1,6 @@
 // import LoginScreen from './Components/Screens/Login/LoginScreen';
 import ForgotPassword from './Components/Screens/ForgotPassword/ForgotPassword';
+
 import NavAndRouters from './Components/Screens/NavAndRoutersContainer/NavAndRouters';
 import RegisterScreen from './Components/Screens/Register/RegisterScreen';
 import './App.css';
@@ -11,30 +12,70 @@ import {
   Link,
   useRouteMatch
 } from "react-router-dom";
+
+import AddEventsScreen from './Components/Screens/NavMenuScreens/AddEvents/AddEventsScreen';
+import SocietyMembersScreen from './Components/Screens/NavMenuScreens/SocietyMembers/SocietyMembersScreen';
+
+
+import PaymentScreen from './Components/Screens/NavMenuScreens/Payments/PaymentScreen';
+import AccountScreen from './Components/Screens/NavMenuScreens/Account/AccountScreen';
+
+import AboutSociety from './Components/Screens/NavMenuScreens/AboutSociety/AboutSociety';
+import ReportScreen from './Components/Screens/NavMenuScreens/Reports/ReportScreen';
+
 import { AuthProvider } from './contexts/AuthContext';
+import { auth } from './firebase';
+import { useState } from 'react';
 function App() {
+  const [signedin, setSignedin] = useState(false)
+    auth.onAuthStateChanged((user)=>{
+      if(user){
+        setSignedin(true);
+        //  console.log(user, 'dfghjj')
+      }else{
+
+        setSignedin(false);
+      }
+  });
   return (
     <AuthProvider>
-    <BrowserRouter>
-    <div className="App">
-    <Switch>
-    <Route exact path="/">
-    <LoginScreen/> 
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            {
+              !signedin ? (
+                <>
+                  <Route exact path="/">
+                    <LoginScreen />
                   </Route>
                   <Route exact path="/RegisterScreen">
-                    <RegisterScreen/>
-                  
+                    <RegisterScreen />
+
                   </Route>
                   <Route exact path="/Forgotpassword">
-                  <ForgotPassword/> 
+                    <ForgotPassword />
                   </Route>
-      {/* <LoginScreen/> */}
-      
-      {/* <ForgotPassword/> */}
-      {/* <NavAndRouters/> */}
-      </Switch>
-    </div>
-    </BrowserRouter>
+                </>
+              ) : (
+                <>
+
+                  <NavAndRouters />
+
+                  <Route exact path='/societyMembers'><SocietyMembersScreen /></Route>
+                  <Route exact path='/reports' ><ReportScreen /></Route>
+                  <Route exact path='/about' ><AboutSociety /></Route>
+                  <Route exact path='/account'><AccountScreen /></Route>
+                  <Route exact path='/events'><AddEventsScreen /></Route>
+                </>
+              )
+            }
+            {/* <LoginScreen/> */}
+
+            {/* <ForgotPassword/> */}
+            {/* <NavAndRouters/> */}
+          </Switch>
+        </div>
+      </BrowserRouter>
     </AuthProvider>
   );
 }

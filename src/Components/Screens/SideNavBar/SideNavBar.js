@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from '../../Images/logo.png';
 import '../../Styles/SideNavBar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Container,Card,Form,Button} from 'react-bootstrap';
+import { useAuth } from "../../../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 
 const SideNavBar = () => {
+    const {logOut}=useAuth()
+    const [error,setError]=useState('')
+    const history=useHistory()
+
+    const handleLogout=async()=>{
+        try{
+            setError('')
+
+            await logOut()
+            history.push("/")
+        }catch{
+            setError('Failed to log out')
+        }
+    }
+
   return <>
     <div>
 
@@ -76,7 +93,7 @@ const SideNavBar = () => {
 
                 <div className="logout-btn-con pt-4 mt-4">
                     <li className="logout">
-                            <button className="btn btn-danger">
+                            <button className="btn btn-danger" onClick={handleLogout}>
                                     <div className="icons">
                                             <i class="bi bi-box-arrow-right"></i>
                                     </div>
