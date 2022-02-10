@@ -1,4 +1,4 @@
-import React ,{useState}from 'react';
+import React ,{useState,useEffect}from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card} from 'react-bootstrap';
 import {Routes,Route,Switch} from 'react-router-dom';
@@ -6,10 +6,20 @@ import '../../../Styles/AddEvents.css'
 import CreateEvents from '../EventsNavScreens/CreateEventsScreen/CreateEvents';
 import EventReports from '../EventsNavScreens/EventsReportsScreen/EventReports';
 import ManageEvents from '../EventsNavScreens/ManageEventsScreen/ManageEvents';
-
+import { auth,db } from '../../../../firebase';
 import { useAuth } from '../../../../contexts/AuthContext';
 const AddEventsScreen = () => {
+  const [Firstname,setFirstname]=useState('')
+  const user = auth.currentUser.uid
+  useEffect(()=>{
+    db.ref(`/user/`+ user).on('value',snap=>{
+      
+      setFirstname(snap.val() && snap.val().Firstname);
+
+
+    })
     
+  },[])
   return <>
     
     {/* icon */}
@@ -17,7 +27,7 @@ const AddEventsScreen = () => {
           <i class="bi bi-bell-fill not-icon text-white"></i>
     </div>
         <h4 className="fw-bold p-4 text-secondary header">WELCOME BACK</h4>
-        <h6 className="fw-bold p-4 name">Maluleka Lovers</h6>
+        <h6 className="fw-bold p-4 name">{Firstname}</h6>
         
       {/* <hr/> */}
       <div className="container-xl">
