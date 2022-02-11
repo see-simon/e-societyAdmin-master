@@ -26,6 +26,9 @@ import ReportScreen from './Components/Screens/NavMenuScreens/Reports/ReportScre
 import { AuthProvider } from './contexts/AuthContext';
 import { auth } from './firebase';
 import { useState } from 'react';
+import ManageEvents from './Components/Screens/NavMenuScreens/EventsNavScreens/ManageEventsScreen/ManageEvents';
+import EventReports from './Components/Screens/NavMenuScreens/EventsNavScreens/EventsReportsScreen/EventReports';
+import CreateEvents from './Components/Screens/NavMenuScreens/EventsNavScreens/CreateEventsScreen/CreateEvents';
 function App() {
   const [signedin, setSignedin] = useState(false)
     auth.onAuthStateChanged((user)=>{
@@ -66,6 +69,9 @@ function App() {
                   <Route exact path='/about' ><AboutSociety /></Route>
                   <Route exact path='/account'><AccountScreen /></Route>
                   <Route exact path='/events'><AddEventsScreen /></Route>
+                  <Route exact path="/manage"><ManageEvents/></Route> 
+                <Route exact path="/eventReport" ><EventReports/></Route>
+                <Route exact path="/createEvents"><CreateEvents/></Route>
                 </>
               )
             }

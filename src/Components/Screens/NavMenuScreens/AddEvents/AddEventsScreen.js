@@ -1,14 +1,31 @@
 import React ,{useState,useEffect}from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card} from 'react-bootstrap';
-import {Routes,Route,Switch} from 'react-router-dom';
+import {Routes,Route,Switch, Link} from 'react-router-dom';
 import '../../../Styles/AddEvents.css'
 import CreateEvents from '../EventsNavScreens/CreateEventsScreen/CreateEvents';
 import EventReports from '../EventsNavScreens/EventsReportsScreen/EventReports';
 import ManageEvents from '../EventsNavScreens/ManageEventsScreen/ManageEvents';
 import { auth,db } from '../../../../firebase';
+import Table from "react-bootstrap/Table";
 import { useAuth } from '../../../../contexts/AuthContext';
+import { useHistory,useParams} from 'react-router-dom';
+import styled from "styled-components";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+const StatusTD = styled.td`
+  font-weight: bold;
+  color: ${(props) => (props.type === "Pending" ? "blue" : "")};
+  color: ${(props) => (props.type === "Accepted" ? "green" : "")};
+  color: ${(props) => (props.type === "Rejected" ? "red" : "")};
+`;
 const AddEventsScreen = () => {
+  const [events,setEvents]=useState('')
+    const [fee,setFee]=useState('')
+    const [description,setDescription]=useState('')
+    const [location,setLocation]=useState('')
+    const [date,setDate]=useState('')
+    const [time,setTime]=useState('')
+  const [bookings, setBookings] = useState([]);
   const [Firstname,setFirstname]=useState('')
   const user = auth.currentUser.uid
   useEffect(()=>{
@@ -20,6 +37,30 @@ const AddEventsScreen = () => {
     })
     
   },[])
+  let currentId = useParams();
+  const {id}=currentId;
+  useEffect(()=>{
+    db.ref('BookEvent').on('value',snap=>{
+      
+      setBookings({...snap.val() });
+      
+
+    })
+    
+  },[])
+  const updateBooking = (bookingNumb, status) => {
+
+    // db.ref('BookEvent').child(bookingNumb).update(status)
+    // .then(()=>db.ref('BookEvent').once('value'))
+    // .then(snapshot=>snapshot.val())
+    // .catch(error => ({
+    //   errorCode: error.code,
+    //   errorMessage: error.message
+    // }));
+     db.ref().child('/BookEvent/'+bookingNumb).set({ status:"Rejected"})
+    
+  };
+ 
   return <>
     
     {/* icon */}
@@ -58,13 +99,93 @@ const AddEventsScreen = () => {
       <div className="container-xl mt-4 ms-4 p-2 w-75 h-75">
         <Card className="events-con p-0 m-0 h-75">
           <Card.Body>
-          <Switch>						
+          {bookings ? (
+        <Table
+          striped
+          bordered
+          hover
+          size="sm"
+          style={{ marginTop: "80px", width: "90%", margin: "80px auto" }}
+        >
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Name</th>
+              
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Capactiy</th>
+              <th>Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(bookings).map((id,booking) => (
+              // <tr key={booking.id}>
+              <>
+                <>
+                  <td>{id}</td>
+                  <td>{bookings[id].events}</td>
+                  <td>{bookings[id].fee}</td>
+                  
+                  <td>{bookings[id].description}</td>
+                  <td>{bookings[id].date}</td>
+                  <td>{bookings[id].time}</td>
+                  <td>{bookings[id].location}</td>
+                  <StatusTD type={bookings[id].status}>{bookings[id].status}</StatusTD>
+                  {bookings[id].status === "Pending" ? (
+                    <>
+                      <td style={{ textAlign: "center" }}>
+                        <FaCheckCircle
+                          color="green"
+                          style={{
+                            cursor: "pointer",
+                            fontSize: "20px",
+                          }}
+                          onClick={() => updateBooking(id, "Accepted")}
+                        />
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        <Link  onClick={() => updateBooking(id, bookings[id].status)}>sdfghj</Link>
+                        <FaTimesCircle
+                          color="red"
+                          style={{
+                            cursor: "pointer",
+                            fontSize: "20px",
+                          }}
+                          onClick={() => updateBooking(id, "Rejected")}
+                        />
+                      </td>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </>
+                </>
+              
+            ))}
+          </tbody>
+        </Table>
+      ) : (
+        <div className="container roomerror">
+          <div className="row my-5">
+            <div className="col-md-6 col-12 mx-auto">
+              <div className="card shadow-lg border-0 p-4 error">
+                <h1 className="text-center display-4">No bookings.</h1>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+          {/* <Switch>						
         <Route exact path="/" ><CreateEvents/></Route> 
                 <Route exact path="/manage"><ManageEvents/></Route> 
-                <Route exact path="eventReport" ><EventReports/></Route>
-                <Route exact path="createEvents"><CreateEvents/></Route> 
+                <Route exact path="/eventReport" ><EventReports/></Route>
+                <Route exact path="/createEvents"><CreateEvents/></Route> 
               
-              </Switch>
+              </Switch> */}
           </Card.Body>
         </Card>
       </div>
