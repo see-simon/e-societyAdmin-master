@@ -1,9 +1,21 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card} from 'react-bootstrap';
 import '../../../Styles/SocietyMembers.css'
-
+import { useHistory,useParams} from 'react-router-dom';
+import { db } from '../../../../firebase';
 const SocietyMembersScreen = () => {
+  let currentId = useParams();
+    const {id}=currentId;
+  const [user,setUser] = useState({});
+  useEffect(()=>{
+      db.ref('/user/').on("value",(snapshot)=>{
+          setUser({
+              ...snapshot.val(),
+          })
+          
+      })
+  },[]);
   return <>
 
       <div className="notification text-center p-4 mt-2">
@@ -19,16 +31,29 @@ const SocietyMembersScreen = () => {
 
       <div className="container-xl mt-4">
 
-        <Card className="w-75 m-auto member-con">
+        
+          { Object.keys(user).map((id,index)=>{
+              return(
+                <>
+                <Card className="w-75 m-auto member-con">
           <Card.Body>
             <div className="container-xl">
             <i class="bi bi-person-fill text-secondary mem-icon"></i>
-            <p className="d-inline-block ps-3">Maluleka Lebo Lovers</p>
-            <p className="ps-1 mem-email">loversMjolo@gmail.com</p>
+           
+               
+                <p className="d-inline-block ps-3">{user[id].Firstname}</p>
+                <p className="ps-1 mem-email">{user[id].email}</p>
+                
+              
             </div>
             <i class="bi bi-chevron-right mem-info-con"></i>
-          </Card.Body>
+            </Card.Body>
         </Card>
+            </>
+            )
+            
+              })}
+          
 
       </div>
 
