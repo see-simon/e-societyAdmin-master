@@ -50,14 +50,14 @@ const AddEventsScreen = () => {
   },[])
   const updateBooking = (bookingNumb, status) => {
 
-    // db.ref('BookEvent').child(bookingNumb).update(status)
-    // .then(()=>db.ref('BookEvent').once('value'))
-    // .then(snapshot=>snapshot.val())
-    // .catch(error => ({
-    //   errorCode: error.code,
-    //   errorMessage: error.message
-    // }));
-     db.ref().child('/BookEvent/'+bookingNumb).set({ status:"Rejected"})
+    db.ref('BookEvent').child(bookingNumb).update({Status:status})
+    .then(()=>db.ref('BookEvent').once('value'))
+    .then(snapshot=>snapshot.val())
+    .catch(error => ({
+      errorCode: error.code,
+      errorMessage: error.message
+    }));
+    //  db.ref('/BookEvent/').set(bookings[bookingNumb].Status)
     
   };
  
@@ -110,31 +110,31 @@ const AddEventsScreen = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Email</th>
-              <th>Name</th>
+              <th>Events</th>
+              <th>Fee</th>
               
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Capactiy</th>
-              <th>Price</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Location</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
             {Object.keys(bookings).map((id,booking) => (
-              // <tr key={booking.id}>
+              <tr key={booking.id}>
               <>
                 <>
                   <td>{id}</td>
                   <td>{bookings[id].events}</td>
                   <td>{bookings[id].fee}</td>
                   
-                  <td>{bookings[id].description}</td>
+                  <td>{bookings[id].Description}</td>
                   <td>{bookings[id].date}</td>
                   <td>{bookings[id].time}</td>
                   <td>{bookings[id].location}</td>
-                  <StatusTD type={bookings[id].status}>{bookings[id].status}</StatusTD>
-                  {bookings[id].status === "Pending" ? (
+                  <StatusTD type={bookings[id].Status}>{bookings[id].Status}</StatusTD>
+                  {bookings[id].Status === "Pending" ? (
                     <>
                       <td style={{ textAlign: "center" }}>
                         <FaCheckCircle
@@ -147,7 +147,7 @@ const AddEventsScreen = () => {
                         />
                       </td>
                       <td style={{ textAlign: "center" }}>
-                        <Link  onClick={() => updateBooking(id, bookings[id].status)}>sdfghj</Link>
+ 
                         <FaTimesCircle
                           color="red"
                           style={{
@@ -163,7 +163,7 @@ const AddEventsScreen = () => {
                   )}
                 </>
                 </>
-              
+              </tr>
             ))}
           </tbody>
         </Table>
