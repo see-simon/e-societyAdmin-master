@@ -15,8 +15,8 @@ const ManageEvents = () => {
     
   },[])
   const values ={
-    events:"",
-    Price:"",
+    events:'',
+    Price:'',
     
   
   };
@@ -85,8 +85,8 @@ const ManageEvents = () => {
           </div>
           <select class="custom-select" id="gender3">
             <option selected>Choose...</option>
-            <option value={events} name="Wedding" onChange={handleInputChange}>Wedding</option>
-            <option value={events} name="Party" onChange={handleInputChange} >Party</option>
+            <option value={events} name="Wedding" >Wedding</option>
+            <option value={events} name="Party" >Party</option>
           </select>
 
           <div className="mb-7 mt-7 w-50 input-in">
