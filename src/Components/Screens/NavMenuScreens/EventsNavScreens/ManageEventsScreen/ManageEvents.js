@@ -2,44 +2,42 @@ import React,{useEffect,useState} from 'react';
 import { auth,db } from '../../../../../firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form,Button,Alert} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 const ManageEvents = () => {
   const [Firstname,setFirstname]=useState('')
+  const [selector,setSelector]=useState()
+  const [Price,setPrice]=useState('')
   const user = auth.currentUser.uid
   useEffect(()=>{
     db.ref(`/user/`+ user).on('value',snap=>{
       
       setFirstname(snap.val() && snap.val().Firstname);
-
+   
 
     })
     
   },[])
-  const values ={
-    events:'',
-    Price:'',
-    
-  
-  };
-  
-  const [initialState,setState]=useState(values)
-  const {events,Price}=initialState;       
-  const handleInputChange =(e)=>{
-    let {name,value}=e.target;
-    setState({
-        ...initialState,
-        [name]:value,
-    });
-  }
+ 
+  const [EventType,setEventType] = useState({});
+  useEffect(()=>{
+      db.ref('/Event/').on("value",(snapshot)=>{
+        setEventType({
+              ...snapshot.val(),
+          })
+          
+      })
+  },[]);
   const handleSubmit = (e)=>{
     e.preventDefault();
     
-        db.ref('Event').push(initialState)
+        db.ref('Event').push({selector,Price})
         // history.push("/") 
-        // ,(err)=>{
+        // ,(err)=>{   
          // if(err){
         //    console.log(err);
        // }
   //  }
+  //
 }
 
   return <>
@@ -83,20 +81,51 @@ const ManageEvents = () => {
           <div class="input-group-prepend">
             <label class="input-group-text" for="gender3">Event Type</label>
           </div>
-          <select class="custom-select" id="gender3">
+          <select class="custom-select" id="gender3" 
+          value={selector} onChange={e=>setSelector(e.target.value)} >
             <option selected>Choose...</option>
-            <option value={events} name="Wedding" >Wedding</option>
-            <option value={events} name="Party" >Party</option>
+            <option  name="Wedding" >Wedding</option>
+            <option name="Party" >Party</option>
           </select>
 
           <div className="mb-7 mt-7 w-50 input-in">
-          
+          {/* value={Price} onChange={handleInputChange} */}
                   
-         <input type="tel" class="form-control" name="Price" value={Price} onChange={handleInputChange} placeholder='Enter Price'></input>
+         <input type="tel" class="form-control" name="Price" value={Price} onChange={e=>setPrice(e.target.value)}
+           placeholder='Enter Price'></input>
               </div>
         </div>
         <Button type='submit' className="btn d-block acc-update-btn mt-4">Add Event</Button>
         </form>
+        <div className="container-xl mt-4">
+
+        
+          { Object.keys(EventType).map((id,index)=>{
+              return(
+                <>
+                <Card className="w-75 m-auto member-con">
+          <Card.Body>
+            <div className="container-xl">
+            <h4>EventType</h4>
+           
+               
+                <input className="form-control" value={EventType[id].selector} onChange={e=>setSelector(e.target.value)}></input>
+                <h4>Price</h4>
+                <input className="ps-1 mem-email" value={EventType[id].Price}></input>
+                
+              
+            </div>
+            <Button type='submit' className="btn d-block acc-update-btn mt-4">Edit</Button>
+            </Card.Body>
+        </Card>
+            </>
+            )
+            
+              })}
+          
+
+      </div>
+
         </div>
       </div>
   </>;
