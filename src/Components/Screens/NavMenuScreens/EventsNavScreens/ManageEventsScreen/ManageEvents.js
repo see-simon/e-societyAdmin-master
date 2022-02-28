@@ -8,6 +8,7 @@ const ManageEvents = () => {
   const [selector,setSelector]=useState()
   const [Price,setPrice]=useState('')
   const user = auth.currentUser.uid
+  const [EventType,setEventType] = useState({});
   useEffect(()=>{
     db.ref(`/user/`+ user).on('value',snap=>{
       
@@ -16,30 +17,26 @@ const ManageEvents = () => {
 
     })
     
+    db.ref('/Event/').on("value",(snapshot)=>{
+      setEventType({
+            ...snapshot.val(),
+        })
+        
+    })
   },[])
  
-  const [EventType,setEventType] = useState({});
-  useEffect(()=>{
-      db.ref('/Event/').on("value",(snapshot)=>{
-        setEventType({
-              ...snapshot.val(),
-          })
-          
-      })
-  },[]);
+  
+  
   const handleSubmit = (e)=>{
     e.preventDefault();
     
         db.ref('Event').push({selector,Price})
-        // history.push("/") 
-        // ,(err)=>{   
-         // if(err){
-        //    console.log(err);
-       // }
-  //  }
-  //
+       
 }
+const onDelete =(id)=>{
+ db.ref(`/Event/${id}`).remove()
 
+}
   return <>
       <div>
       <div className="notification text-end p-4">
@@ -100,13 +97,13 @@ const ManageEvents = () => {
         <div className="container-xl mt-4">
 
         
-          { Object.keys(EventType).map((id,index)=>{
-              return(
+          { Object.keys(EventType).map((id,index)=>
+            
                 <>
                 <Card className="w-75 m-auto member-con">
           <Card.Body>
             <div className="container-xl">
-            <h4>EventType</h4>
+            <h4>EventType  </h4>
            
                
                 <input className="form-control" value={EventType[id].selector} onChange={e=>setSelector(e.target.value)}></input>
@@ -115,13 +112,14 @@ const ManageEvents = () => {
                 
               
             </div>
-            <Button type='submit' className="btn d-block acc-update-btn mt-4">Edit</Button>
+            <Button className="btn d-block acc-update-btn mt-4"
+            onClick={() => onDelete(id)}>Delete</Button>
             </Card.Body>
         </Card>
             </>
-            )
+           
             
-              })}
+              )}
           
 
       </div>
