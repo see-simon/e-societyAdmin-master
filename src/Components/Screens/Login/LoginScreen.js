@@ -90,7 +90,7 @@ const LoginScreen = () => {
                     <h5 className="text-center p-2 text-primary fw-bold wel-txt">Welcome To e-Society Administrator Portal</h5>
                     <p className="instructions">please enter your verified credentials to login to our system.</p>
                     <img src={auth} alt="auth" className="auth-img"/>
-                    <Link to='/RegisterScreen' className="me-4 text-secondary text-center login-acc">Create Account</Link>
+                    <Link to='/RegisterScreen' className="me-4 text-secondary text-center login-acc">Create Society </Link>
                     {/* <p className="me-4 text-secondary text-center login-acc">Create Account</p> */}
                 </div>
             </div>

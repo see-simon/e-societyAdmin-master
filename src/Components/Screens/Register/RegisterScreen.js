@@ -34,10 +34,10 @@ const RegisterScreen = () => {
             await auth.createUserWithEmailAndPassword(emailRef.current.value, passwordRef.current.value)
                 .then(res => {
                     const user={
-                        Firstname: Firstname,
-                        Lastname: Lastname,
+                        societyCode: Firstname,
+                        Address: Lastname,
                         emailRef: emailRef.current.value,
-                        Phonenumber: Phonenumber,
+                        SocietyName: Phonenumber,
                         uid: res.user.uid
                     }
                       console.log(user)
@@ -89,14 +89,14 @@ const RegisterScreen = () => {
                                             <div className="mb-4 input-in">
                                                 <div className="acc-icon-input"><i class="bi bi-envelope-fill"></i></div>
                                                 <input type="email" required ref={emailRef}
-                                                    class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter Email Address'></input>
+                                                    class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter  email'></input>
                                             </div>
                                         </div>
                                         <div className="col col-md-6">
                                             <div className="mb-4 input-in">
                                                 <div className="acc-icon-input"><i class="bi bi-telephone-fill"></i></div>
                                                 <input type="tel" onChange={(e) => setPhonenumber(e.target.value)}
-                                                    class="form-control" id="userEmailAccount" aria-describedby="userPhone" placeholder='Enter Phone Number'></input>
+                                                    class="form-control" id="userEmailAccount" aria-describedby="userPhone" placeholder='Enter Society Name'></input>
                                             </div>
                                         </div>
                                     </div>
@@ -106,14 +106,14 @@ const RegisterScreen = () => {
                                             <div className="mb-4 input-in">
                                                 <div className="acc-icon-input"><i class="bi bi-file-person-fill"></i></div>
                                                 <input type="name" onChange={(e) => setFirstname(e.target.value)}
-                                                    class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter First Name'></input>
+                                                    class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter Society Code'></input>
                                             </div>
                                         </div>
                                         <div className="col col-md-6">
                                             <div className="mb-4 input-in">
                                                 <div className="acc-icon-input"><i class="bi bi-file-person-fill"></i></div>
                                                 <input type="name" onChange={(e) => setLastname(e.target.value)}
-                                                    class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter Last Name'></input>
+                                                    class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Enter Location'></input>
                                             </div>
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@ const RegisterScreen = () => {
 
                                 </div>
 
-                                <Button type="submit" className="btn d-block acc-update-btn mt-4">SIGN UP</Button>
+                                <Button type="submit" className="btn d-block acc-update-btn mt-4">CREATE SOCIETY</Button>
 
                                 <div className="row mt-5 w-50 m-auto">
                                     <div className="col col-md-8 ps-3">
