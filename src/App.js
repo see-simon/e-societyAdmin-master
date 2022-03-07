@@ -40,6 +40,8 @@ function App() {
         setSignedin(false);
       }
   });
+
+  // const [visible,setVisible] = useState(false);
   return (
     <AuthProvider>
       <BrowserRouter>
@@ -61,17 +63,25 @@ function App() {
                 </>
               ) : (
                 <>
+                  <NavAndRouters>
+                    <Route exact path='/societyMembers'><SocietyMembersScreen /></Route>
+                    <Route exact path='/reports' ><ReportScreen /></Route>
+                    <Route exact path='/about' ><AboutSociety /></Route>
+                    <Route exact path='/account'><AccountScreen /></Route>
+                    <Route exact path='/events'><AddEventsScreen /></Route>
+                    <Route exact path="/manage"><ManageEvents/></Route> 
+                    <Route exact path="/eventReport" ><EventReports/></Route>
+                    <Route exact path="/createEvents"><CreateEvents/></Route>
+                  </NavAndRouters>
 
-                  <NavAndRouters />
-
-                  <Route exact path='/societyMembers'><SocietyMembersScreen /></Route>
+                  {/* <Route exact path='/societyMembers'><SocietyMembersScreen /></Route>
                   <Route exact path='/reports' ><ReportScreen /></Route>
                   <Route exact path='/about' ><AboutSociety /></Route>
                   <Route exact path='/account'><AccountScreen /></Route>
-                  <Route exact path='/events'><AddEventsScreen /></Route>
-                  <Route exact path="/manage"><ManageEvents/></Route> 
-                <Route exact path="/eventReport" ><EventReports/></Route>
-                <Route exact path="/createEvents"><CreateEvents/></Route>
+                  <Route exact path='/events'><AddEventsScreen /></Route> */}
+                  {/* <Route exact path="/manage"><ManageEvents/></Route> 
+                  <Route exact path="/eventReport" ><EventReports/></Route>
+                  <Route exact path="/createEvents"><CreateEvents/></Route> */}
                 </>
               )
             }

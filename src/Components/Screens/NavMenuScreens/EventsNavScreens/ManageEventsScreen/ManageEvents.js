@@ -38,7 +38,7 @@ const onDelete =(id)=>{
 
 }
   return <>
-      <div>
+      <div className="text-dark">
       <div className="notification text-end p-4">
           <i class="bi bi-bell-fill not-icon text-white"></i>
     </div>

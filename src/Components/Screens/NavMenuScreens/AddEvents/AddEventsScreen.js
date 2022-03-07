@@ -64,11 +64,11 @@ const AddEventsScreen = () => {
   return <>
     
     {/* icon */}
-    <div className="notification text-end p-4">
+    {/* <div className="notification text-end p-4">
           <i class="bi bi-bell-fill not-icon text-white"></i>
-    </div>
-        <h4 className="fw-bold p-4 text-secondary header">WELCOME BACK</h4>
-        <h6 className="fw-bold p-4 name">{Firstname}</h6>
+    </div> */}
+        <h4 className="fw-bold p-4 text-secondary header mt-3">User Event Requests</h4>
+        <h6 className="fw-bold p-4 name text-secondary">{Firstname}</h6>
         
       {/* <hr/> */}
       <div className="container-xl">
@@ -96,7 +96,7 @@ const AddEventsScreen = () => {
 
       <hr className="me-4 ms-4"/>
         
-      <div className="container-xl mt-4 ms-4 p-2 w-75 h-75">
+      <div className="container-xl mt-0 ms-0 p-2 h-75">
         <Card className="events-con p-0 m-0 h-75">
           <Card.Body>
           {bookings ? (
@@ -105,7 +105,7 @@ const AddEventsScreen = () => {
           bordered
           hover
           size="sm"
-          style={{ marginTop: "80px", width: "90%", margin: "80px auto" }}
+          style={{ marginTop: "10px", width: "90%", margin: "80px auto" }}
         >
           <thead>
             <tr>

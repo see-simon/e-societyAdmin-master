@@ -4,7 +4,9 @@ import '../../Styles/SideNavBar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Container,Card,Form,Button} from 'react-bootstrap';
 import { useAuth } from "../../../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
+import { Button,Dropdown,ButtonGroup} from "react-bootstrap";
+
 
 const SideNavBar = () => {
     const {logOut}=useAuth()
@@ -39,6 +41,27 @@ const SideNavBar = () => {
                                         <i class="bi bi-grid-fill nav-icons"></i>
                                     </div>
                                     Events
+
+                                    {/* <Dropdown as={ButtonGroup}>
+                                        <Button className="text-light drop"></Button>
+
+                                        <Dropdown.Toggle split id="dropdown-split-basic" className="drop"/>
+
+                                        <Dropdown.Menu>
+
+                                            <a href="/events"><Dropdown.Item href="/events">Create Events</Dropdown.Item></a>
+                                            
+                                            <Link to='/createEvents'>
+                                                <a href="/createEvents"><Dropdown.Item href="/createEvents">Manage Events</Dropdown.Item></a>
+                                            </Link>
+                                            
+                                            <Link to='/eventReport'>
+                                                <a href="/eventReport"><Dropdown.Item href="/eventReport">Event Reports</Dropdown.Item></a> 
+                                            </Link>
+                                            
+                                            
+                                        </Dropdown.Menu>
+                                    </Dropdown> */}
                             </a>
                         </li>
 
