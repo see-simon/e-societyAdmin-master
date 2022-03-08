@@ -16,8 +16,6 @@ import {
 import AddEventsScreen from './Components/Screens/NavMenuScreens/AddEvents/AddEventsScreen';
 import SocietyMembersScreen from './Components/Screens/NavMenuScreens/SocietyMembers/SocietyMembersScreen';
 
-
-import PaymentScreen from './Components/Screens/NavMenuScreens/Payments/PaymentScreen';
 import AccountScreen from './Components/Screens/NavMenuScreens/Account/AccountScreen';
 
 import AboutSociety from './Components/Screens/NavMenuScreens/AboutSociety/AboutSociety';
@@ -64,14 +62,14 @@ function App() {
               ) : (
                 <>
                   <NavAndRouters>
-                    <Route exact path='/societyMembers'><SocietyMembersScreen /></Route>
-                    <Route exact path='/reports' ><ReportScreen /></Route>
-                    <Route exact path='/about' ><AboutSociety /></Route>
-                    <Route exact path='/account'><AccountScreen /></Route>
+                    <Route path='/societyMembers'><SocietyMembersScreen /></Route>
+                    <Route  path='/reports' ><ReportScreen /></Route>
+                    <Route  path='/about' ><AboutSociety /></Route>
+                    <Route  path='/account'><AccountScreen /></Route>
                     <Route exact path='/events'><AddEventsScreen /></Route>
-                    <Route exact path="/manage"><ManageEvents/></Route> 
-                    <Route exact path="/eventReport" ><EventReports/></Route>
-                    <Route exact path="/createEvents"><CreateEvents/></Route>
+                    <Route  path="/manage"><ManageEvents/></Route> 
+                    <Route  path="/eventReport" ><EventReports/></Route>
+                    <Route  path="/createEvents"><CreateEvents/></Route>
                   </NavAndRouters>
 
                   {/* <Route exact path='/societyMembers'><SocietyMembersScreen /></Route>

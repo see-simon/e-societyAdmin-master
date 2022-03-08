@@ -63,10 +63,6 @@ const AddEventsScreen = () => {
  
   return <>
     
-    {/* icon */}
-    {/* <div className="notification text-end p-4">
-          <i class="bi bi-bell-fill not-icon text-white"></i>
-    </div> */}
         <h4 className="fw-bold p-4 text-secondary header mt-3">User Event Requests</h4>
         <h6 className="fw-bold p-4 name text-secondary">{Firstname}</h6>
         
@@ -75,21 +71,21 @@ const AddEventsScreen = () => {
         <ul>
           <li className="p-0 m-0 list-events d-inline-block">
               <a href="/"> 
-                  <p className="text-secondary text-start links d-inline-block">Create Events</p>
-              </a>
-          </li>
-
-          <li className="ps-4 ms-4 list-event d-inline-block">
-              <a href="/manage"> 
                   <p className="text-secondary text-start links d-inline-block">Manage Events</p>
               </a>
           </li>
 
           <li className="ps-4 ms-4 list-event d-inline-block">
+              <a href="/manage"> 
+                  <p className="text-secondary text-start links d-inline-block">Create Events</p>
+              </a>
+          </li>
+
+          {/* <li className="ps-4 ms-4 list-event d-inline-block">
               <a href="/eventReport"> 
                   <p className="text-secondary text-start links d-inline-block">Events Reports</p>
               </a>
-          </li>
+          </li> */}
 
         </ul>
       </div>

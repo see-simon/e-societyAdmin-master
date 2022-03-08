@@ -41,27 +41,6 @@ const SideNavBar = () => {
                                         <i class="bi bi-grid-fill nav-icons"></i>
                                     </div>
                                     Events
-
-                                    {/* <Dropdown as={ButtonGroup}>
-                                        <Button className="text-light drop"></Button>
-
-                                        <Dropdown.Toggle split id="dropdown-split-basic" className="drop"/>
-
-                                        <Dropdown.Menu>
-
-                                            <a href="/events"><Dropdown.Item href="/events">Create Events</Dropdown.Item></a>
-                                            
-                                            <Link to='/createEvents'>
-                                                <a href="/createEvents"><Dropdown.Item href="/createEvents">Manage Events</Dropdown.Item></a>
-                                            </Link>
-                                            
-                                            <Link to='/eventReport'>
-                                                <a href="/eventReport"><Dropdown.Item href="/eventReport">Event Reports</Dropdown.Item></a> 
-                                            </Link>
-                                            
-                                            
-                                        </Dropdown.Menu>
-                                    </Dropdown> */}
                             </a>
                         </li>
 
@@ -84,7 +63,7 @@ const SideNavBar = () => {
                         </li>
 
                         <li className="p-0 m-0 list-down">
-                            <a href="/payment">
+                            <a href="/newPayments">
                                     <div className="icon">
                                         <i class="bi bi-wallet-fill nav-icons"></i>
                                     </div>

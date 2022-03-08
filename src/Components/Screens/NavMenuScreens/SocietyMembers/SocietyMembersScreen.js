@@ -18,19 +18,18 @@ const SocietyMembersScreen = () => {
   },[]);
   return <>
 
-      <div className="notification text-center p-4 mt-2">
+      <div className="notification text-center p-4 mt-2 d-flex mx-auto">
             <i class="bi bi-shield-fill-check ver-icon"></i>
       </div>
 
-      <div className="mt-4 p-2 w-75 m-auto">
-        <div className="info-icon bg-white">
-          <i class="bi bi-info-circle pe-2 pt-2"></i>
-          <p className="d-inline-block pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+      <div className="mt-4 p-1 w-75 m-auto info-con p-0">
+        <div className="info-icon d-flex m-0 ">
+          <i class="bi bi-info-circle ps-3 pe-2 pt-2"></i>
+          <p className="d-inline-block pt-2">List of society members </p>
         </div>
       </div>
 
       <div className="container-xl mt-4">
-
         
           { Object.keys(user).map((id,index)=>{
               return(
@@ -39,11 +38,9 @@ const SocietyMembersScreen = () => {
           <Card.Body>
             <div className="container-xl">
             <i class="bi bi-person-fill text-secondary mem-icon"></i>
-           
                
                 <p className="d-inline-block ps-3">{user[id].Firstname}</p>
                 <p className="ps-1 mem-email">{user[id].email}</p>
-                
               
             </div>
             <i class="bi bi-chevron-right mem-info-con"></i>
