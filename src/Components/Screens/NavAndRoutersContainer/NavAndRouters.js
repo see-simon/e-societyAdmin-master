@@ -11,17 +11,18 @@ import ManageEvents from '../NavMenuScreens/EventsNavScreens/ManageEventsScreen/
 import CreateEvents from '../NavMenuScreens/EventsNavScreens/CreateEventsScreen/CreateEvents';
 import EventReports from '../NavMenuScreens/EventsNavScreens/EventsReportsScreen/EventReports';
 import NewPaymentScreen from '../NavMenuScreens/Payments/NewPaymentScreen';
+import '../../Styles/NavAndRouters.css';
 
 const NavAndRouters = ({otherNavRouters}) => {
   return <>
-      <div className="container-fluid main-con ">
+      <div className="container-fluid main-con-nav m-0 p-0">
 					<div className="row p-3 m-2">
 
-							<div className="col col-md-4 d-inline p-0 m-0 d-inline-block">
+							<div className="col col-md-4 d-inline p-0 m-0 d-inline-block navigation-styled">
 									<SideNavBar/>
 							</div>
 
-							<div className="col col-md-8 p-3">
+							<div className="col p-3 ms-3 me-3 info-container">
 							
 									<div className="container-fluid info-con bg-light w-100 h-100 p-2">
                   <Switch>

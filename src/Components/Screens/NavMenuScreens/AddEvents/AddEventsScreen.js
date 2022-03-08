@@ -92,8 +92,8 @@ const AddEventsScreen = () => {
 
       <hr className="me-4 ms-4"/>
         
-      <div className="container-xl mt-0 ms-0 p-2 h-75">
-        <Card className="events-con p-0 m-0 h-75">
+      <div className="container m-0 p-2 h-75 w-100">
+        <Card className="events-con p-0 m-0 bg-light card-events">
           <Card.Body>
           {bookings ? (
         <Table
@@ -101,7 +101,7 @@ const AddEventsScreen = () => {
           bordered
           hover
           size="sm"
-          style={{ marginTop: "10px", width: "90%", margin: "80px auto" }}
+          style={{ marginTop: "10px", width: "100%" }}
         >
           <thead>
             <tr>
