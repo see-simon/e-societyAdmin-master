@@ -39,10 +39,10 @@ const ForgotPassword = () => {
                 
                 <img src={Logo} alt="logo" className="mt-4"/>
                             
-                    <div className="justify-content-center text-center align-items-center info-con-register mt-2">
+                    <div className="justify-content-center text-center align-items-center info-con-forgot mt-2">
                         <hr className="p-0 m-0 hor-line"/>
                         {error && <Alert variant="danger">{error}</Alert>}
-                            <p className="text-secondary">Please enter your registered email address to receive email reset link.</p>
+                            <p className="text-secondary instructions-forgot">Please enter your registered email address to receive email reset link.</p>
                         <hr className="p-0 m-0 hor-line"/>
                     </div>
 
