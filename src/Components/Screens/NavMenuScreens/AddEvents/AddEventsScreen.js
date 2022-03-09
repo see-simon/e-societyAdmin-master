@@ -35,19 +35,16 @@ const AddEventsScreen = () => {
 
 
     })
-    
-  },[])
-  let currentId = useParams();
-  const {id}=currentId;
-  useEffect(()=>{
     db.ref('BookEvent').on('value',snap=>{
       
       setBookings({...snap.val() });
       
 
-    })
-    
+    }) 
   },[])
+  let currentId = useParams();
+  const {id}=currentId;
+  
   const updateBooking = (bookingNumb, status) => {
 
     db.ref('BookEvent').child(bookingNumb).update({Status:status})
