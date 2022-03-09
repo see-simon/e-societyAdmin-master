@@ -28,16 +28,15 @@ const ForgotPassword = () => {
         
       }
 
-  return <div className="container-fluid forgot-main-container m-0 p-0 d-flex">
-    <Container className="p-2 main-forgot-container d-flex">
-        <div className="container-xl mx-auto my-auto">
-            <Card className="bg-light con-forgot">
-                <Card.Body className="justify-content-center text-center con-login">
+  return <div className="container-fluid forgot-main-container m-0 p-0">
+    <Container fluid className="p-2 main-forgot-container d-flex">
+        
+            <Card className="bg-light con-forgot mx-auto my-auto">
+                
+                <Card.Body className="justify-content-center text-center">
 
                 <Link to="/"><i class="bi bi-arrow-left icon-back text-start text-dark"></i></Link>
                 
-                
-
                 <img src={Logo} alt="logo" className="mt-4"/>
                             
                     <div className="justify-content-center text-center align-items-center info-con-register mt-2">
@@ -61,7 +60,6 @@ const ForgotPassword = () => {
                     </div>
                 </Card.Body>
             </Card>
-        </div>
     </Container>
   </div>;
 };
