@@ -16,13 +16,13 @@ const SocietyMembersScreen = () => {
           
       })
   },[]);
-  return <>
+  return <div className="container-fluid society-main-container">
 
       <div className="notification text-center p-4 mt-2 d-flex mx-auto">
             <i class="bi bi-shield-fill-check ver-icon"></i>
       </div>
 
-      <div className="mt-4 p-1 w-75 m-auto info-con p-0">
+      <div className="mt-4 p-1 w-75 m-auto info-con-society p-0">
         <div className="info-icon d-flex m-0 ">
           <i class="bi bi-info-circle ps-3 pe-2 pt-2"></i>
           <p className="d-inline-block pt-2">List of society members </p>
@@ -34,8 +34,8 @@ const SocietyMembersScreen = () => {
           { Object.keys(user).map((id,index)=>{
               return(
                 <>
-                <Card className="w-75 m-auto member-con">
-          <Card.Body>
+                <Card className="w-75 m-auto member-con mt-2">
+          <Card.Body className="bg-light">
             <div className="container-xl">
             <i class="bi bi-person-fill text-secondary mem-icon"></i>
                
@@ -54,7 +54,7 @@ const SocietyMembersScreen = () => {
 
       </div>
 
-  </>;
+  </div>;
 };
 
 export default SocietyMembersScreen;
