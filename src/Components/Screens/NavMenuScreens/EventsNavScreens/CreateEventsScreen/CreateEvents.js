@@ -2,7 +2,7 @@ import React from 'react';
 
 const CreateEvents = () => {
   return <>
-      <div>
+      <div className="text-dark">
           create events here...
       </div>
   </>;

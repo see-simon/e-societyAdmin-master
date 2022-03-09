@@ -4,7 +4,9 @@ import '../../Styles/SideNavBar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Container,Card,Form,Button} from 'react-bootstrap';
 import { useAuth } from "../../../contexts/AuthContext";
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
+import { Button,Dropdown,ButtonGroup} from "react-bootstrap";
+
 
 const SideNavBar = () => {
     const {logOut}=useAuth()
@@ -23,17 +25,16 @@ const SideNavBar = () => {
     }
 
   return <>
-    <div>
+    <div className="nav-main-container">
 
-            <div className="con" style={{}}>
+            <div className="con">
 
             <img src={Logo} alt={'e-society logo'} className="logo" />
 
                 <div className="nav-menu">
 
                     <ul className="nav-items">
-                        
-                        <li className="p-0 m-0 list-one">
+                        <li className="p-0 m-0 list-one" id="events">
                             <a href="/events">
                                     <div className="icon">
                                         <i class="bi bi-grid-fill nav-icons"></i>
@@ -42,8 +43,8 @@ const SideNavBar = () => {
                             </a>
                         </li>
 
-                        <li className="p-0 m-0 list-down">
-                            <a href="/societyMembers">
+                        <li className="p-0 m-0 list-down" id="society">
+                            <a href="/societyMembers" className="society">
                                     <div className="icon">
                                         <i class="bi bi-people-fill nav-icons"></i>
                                     </div>
@@ -51,7 +52,7 @@ const SideNavBar = () => {
                                 </a>
                         </li>
 
-                        <li className="p-0 m-0 list-down">
+                        <li className="p-0 m-0 list-down" id="reports">
                             <a href="/reports">
                                     <div className="icon">
                                         <i class="bi bi-file-pdf-fill nav-icons"></i>
@@ -60,8 +61,8 @@ const SideNavBar = () => {
                                 </a>
                         </li>
 
-                        <li className="p-0 m-0 list-down">
-                            <a href="/payment">
+                        <li className="p-0 m-0 list-down" id="payments">
+                            <a href="/newPayments">
                                     <div className="icon">
                                         <i class="bi bi-wallet-fill nav-icons"></i>
                                     </div>
@@ -69,7 +70,7 @@ const SideNavBar = () => {
                                 </a>
                         </li>
 
-                        <li className="p-0 m-0 list-down">
+                        <li className="p-0 m-0 list-down" id="account">
                             <a href="/account">
                                     <div className="icon">
                                         <i class="bi bi-person-workspace nav-icons"></i>
@@ -78,7 +79,7 @@ const SideNavBar = () => {
                                 </a>
                         </li>
 
-                        <li className="p-0 m-0 list-down">
+                        <li className="p-0 m-0 list-down" id="about">
                             <a href="/about">
                                     <div className="icon">
                                         <i class="bi bi-info-square-fill nav-icons"></i>

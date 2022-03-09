@@ -4,6 +4,8 @@ import '../../Styles/ForgotScreen.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container,Card,Form,Button,Alert} from 'react-bootstrap';
 import { useAuth } from "../../../contexts/AuthContext";
+import { Link} from 'react-router-dom';
+
 const ForgotPassword = () => {
     const emailRef =useRef()
     const {resetPassword}=useAuth()
@@ -25,21 +27,23 @@ const ForgotPassword = () => {
         }
         
       }
-  return <>
-    <Container className="p-2 main-login-con" >
-        <div className="container-xl p-5 mt-2">
-            <Card className=" bg-light con-login">
+
+  return <div className="container-fluid forgot-main-container m-0 p-0 d-flex">
+    <Container className="p-2 main-forgot-container d-flex">
+        <div className="container-xl mx-auto my-auto">
+            <Card className="bg-light con-forgot">
                 <Card.Body className="justify-content-center text-center con-login">
 
-                <div className="icon">
-                    <i class="bi bi-arrow-left icon-back text-start"></i>
-                </div>
-                    <img src={Logo} alt="logo"/>
+                <Link to="/"><i class="bi bi-arrow-left icon-back text-start text-dark"></i></Link>
+                
+                
+
+                <img src={Logo} alt="logo" className="mt-4"/>
                             
-                    <div className="justify-content-center text-center align-items-center info-con mt-2">
+                    <div className="justify-content-center text-center align-items-center info-con-register mt-2">
                         <hr className="p-0 m-0 hor-line"/>
                         {error && <Alert variant="danger">{error}</Alert>}
-                            <p>Please enter your registered email address to receive email reset link.</p>
+                            <p className="text-secondary">Please enter your registered email address to receive email reset link.</p>
                         <hr className="p-0 m-0 hor-line"/>
                     </div>
 
@@ -59,7 +63,7 @@ const ForgotPassword = () => {
             </Card>
         </div>
     </Container>
-  </>;
+  </div>;
 };
 
 export default ForgotPassword;

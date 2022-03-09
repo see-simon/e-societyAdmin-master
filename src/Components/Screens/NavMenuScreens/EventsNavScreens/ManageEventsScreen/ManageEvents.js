@@ -2,7 +2,20 @@ import React,{useEffect,useState} from 'react';
 import { auth,db } from '../../../../../firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form,Button,Alert} from 'react-bootstrap';
-import {Card} from 'react-bootstrap';
+import {Card,Carousel} from 'react-bootstrap';
+import '../../../../Styles/manageEvents.css';
+
+
+// carousel
+// function ControlledCarousel() {
+//   const [index, setIndex] = useState(0);
+
+//   const handleSelect = (selectedIndex, e) => {
+//     setIndex(selectedIndex);
+// }
+
+
+// main component
 const ManageEvents = () => {
   const [Firstname,setFirstname]=useState('')
   const [selector,setSelector]=useState()
@@ -37,12 +50,14 @@ const onDelete =(id)=>{
  db.ref(`/Event/${id}`).remove()
 
 }
+
+  // carousel
   return <>
-      <div>
-      <div className="notification text-end p-4">
+      <div className="text-dark mt-5">
+      {/* <div className="notification text-end p-4">
           <i class="bi bi-bell-fill not-icon text-white"></i>
-    </div>
-        <h4 className="fw-bold p-4 text-secondary header">WELCOME BACK</h4>
+    </div> */}
+        {/* <h4 className="fw-bold p-4 text-secondary header">WELCOME BACK</h4> */}
         <h6 className="fw-bold p-4 name">{Firstname}</h6>
         
       {/* <hr/> */}
@@ -50,21 +65,21 @@ const onDelete =(id)=>{
         <ul>
           <li className="p-0 m-0 list-events d-inline-block">
               <a href="/"> 
-                  <p className="text-secondary text-start links d-inline-block">Create Events</p>
-              </a>
-          </li>
-
-          <li className="ps-4 ms-4 list-event d-inline-block">
-              <a href="/manage"> 
                   <p className="text-secondary text-start links d-inline-block">Manage Events</p>
               </a>
           </li>
 
           <li className="ps-4 ms-4 list-event d-inline-block">
+              <a href="/manage"> 
+                  <p className="text-secondary text-start links d-inline-block">Create Events</p>
+              </a>
+          </li>
+
+          {/* <li className="ps-4 ms-4 list-event d-inline-block">
               <a href="/eventReport"> 
                   <p className="text-secondary text-start links d-inline-block">Events Reports</p>
               </a>
-          </li>
+          </li> */}
 
         </ul>
       </div>
@@ -94,36 +109,33 @@ const onDelete =(id)=>{
         </div>
         <Button type='submit' className="btn d-block acc-update-btn mt-4">Add Event</Button>
         </form>
-        <div className="container-xl mt-4">
 
+        <div className="container-fluid mt-4 ms-0 me-0 p-3 d-flex events-container">
+                  
+                  { Object.keys(EventType).map((id,index)=>
+                    
+                        <>
+                        <Card className="m-2 p-0 member-con d-flex">
+                          <Card.Body>
+                            <div className="container-xl cont-event">
+                            <h4>EventType  </h4>
+                          
+                              
+                                <input className="form-control w-50 pt-2 mt-2" value={EventType[id].selector} onChange={e=>setSelector(e.target.value)}></input>
+                                <h4>Price</h4>
+                                <input className="ps-1 mem-email pt-2" value={EventType[id].Price}></input>
+                                
+                              
+                            </div>
+                            <Button className="btn d-block acc-update-btn mt-4 bg-danger"
+                            onClick={() => onDelete(id)}>Delete</Button>
+                            </Card.Body>
+                        </Card>
+                            </>
+
+                      )}
+                </div>
         
-          { Object.keys(EventType).map((id,index)=>
-            
-                <>
-                <Card className="w-75 m-auto member-con">
-          <Card.Body>
-            <div className="container-xl">
-            <h4>EventType  </h4>
-           
-               
-                <input className="form-control" value={EventType[id].selector} onChange={e=>setSelector(e.target.value)}></input>
-                <h4>Price</h4>
-                <input className="ps-1 mem-email" value={EventType[id].Price}></input>
-                
-              
-            </div>
-            <Button className="btn d-block acc-update-btn mt-4"
-            onClick={() => onDelete(id)}>Delete</Button>
-            </Card.Body>
-        </Card>
-            </>
-           
-            
-              )}
-          
-
-      </div>
-
         </div>
       </div>
   </>;

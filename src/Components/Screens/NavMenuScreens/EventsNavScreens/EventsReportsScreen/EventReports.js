@@ -2,7 +2,7 @@ import React from 'react';
 
 const EventReports = () => {
   return <>
-      <div>
+      <div className="text-dark">
           Event reports here....
       </div>
   </>;

@@ -18,3 +18,14 @@
     right: 16rem;
     margin-top:-2.4rem;
 }
+
+.account-main-container{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.edit-password-btn{
+    background-color: transparent;
+    border: none;
+    color:#000;
+}

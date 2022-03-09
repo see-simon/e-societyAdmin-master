@@ -65,19 +65,20 @@ const RegisterScreen = () => {
 
 
     }
-    return <>
 
-        <Container className="p-2 main-login-con w-100 h-100" >
-            <div className="container-xl p-5 mt-2">
-                <Card className=" bg-light con-login">
+    return <div className="container-fluid w-100 h-100 m-0 p-0 main-container-register bg-primary d-flexp-3">
+        <Container className="p-2 main-register-con d-flex">
+            
+                <Card className="w-100 card-register bg-light">
+                    
                     <Card.Body className="justify-content-center text-center con-login">
                         <img src={Logo} alt="logo" />
 
-                        <div className="justify-content-center text-center align-items-center info-con">
-                            <hr className="p-0 m-0" />
-                            <p>Please enter your credentials to get started with our application</p>
+                        <div className="justify-content-center text-center align-items-center info-con-register">
+                            <hr className="p-0 m-0 bg-secondary" />
+                            <p className="text-secondary pt-2">Please enter society credentials to register for an account.</p>
                             {error && <Alert variant="danger">{error}</Alert>}
-                            <hr className="p-0 m-0" />
+                            <hr className="p-0 m-0 bg-secondary" />
                         </div>
 
                         <div className="inputs mt-3 justify-content-center align-items-center tex-center">
@@ -139,24 +140,21 @@ const RegisterScreen = () => {
 
                                 <Button type="submit" className="btn d-block acc-update-btn mt-4">CREATE SOCIETY</Button>
 
-                                <div className="row mt-5 w-50 m-auto">
-                                    <div className="col col-md-8 ps-3">
-                                        <p className="text-secondary">Already have an account? Sign In</p>
+                                <div className="row pt-3 w-50 m-auto">
+                                    <div className="col col-md-12 ps-3">
+                                        <p className="text-secondary">Already have an account? <Link to="/" className="ps-3 text-primary">Sign In</Link></p>
                                     </div>
                                     <div className="col col-md-4">
-
-
                                     </div>
                                 </div>
                             </Form>
                         </div>
                     </Card.Body>
                 </Card>
-            </div>
         </Container>
 
 
-    </>;
+    </div>;
 };
 
 export default RegisterScreen;

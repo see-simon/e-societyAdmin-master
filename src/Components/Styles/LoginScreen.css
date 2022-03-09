@@ -4,10 +4,30 @@
     background-position: center;
     background-size: cover;
 } */
-
+.login-main-container{
+    background-image: url('../Images/bg.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background: #000957;
+    background: linear-gradient(160deg,#000957 0%, #2fa4ff 40%, #0e3eda 80%);
+    background: -webkit-linear-gradient(160deg,#000957 0%, #2fa4ff 40%, #0e3eda 80%);
+    background: -moz-linear-gradient(160deg,#000957 0%, #2fa4ff 40%, #0e3eda 80%);
+}
+.main-login-con{
+    background-color: transparent;
+    width: 65vw;
+    height: 100vh;
+}
+.left-login-con{
+    background-color: #fff;
+    border-radius: 10px;
+}
 .bg-con{
     border-radius: 1rem;
+    background-color: #ffffff;
 }
+
 .login-con{
     justify-content: 'center';
 }

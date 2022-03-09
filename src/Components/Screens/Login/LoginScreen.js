@@ -36,14 +36,14 @@ const LoginScreen = () => {
         }
       
       }
-  return <>
+  return <div className="container-fluid bg-dark w-100 h-100 login-main-container p-3">
 
-    <Container className="p-2 main-login-con" >
+    <Container fluid className="p-2 main-login-con d-flex" >
 
-        <div className="container-xl p-5 mt-2">
-            <div className="row bg-light bg-con">
+        <div className="container-fluid mx-auto my-auto w-100 ">
+            <div className="row bg-con">
             
-                <div className="col col-md-7">
+                <div className="col col-md-7 left-login-con">
                     <Card className="con-login">
                         <Card.Body className="justify-content-center text-center con-login">
                             <img src={Logo} alt="logo"/>
@@ -69,16 +69,12 @@ const LoginScreen = () => {
 
                                 <Button type="submit" className="btn d-block acc-update-btn mt-4">SIGN IN</Button>
 
-                                <div className="row mt-5 w-50 m-auto">
-                                    <div className="col col-md-8 ps-3">
-                    <Link to='/Forgotpassword' className="text-secondary">Forgot Password?</Link>
+                                <div className="container w-100 mt-5 text-start ms-5">
+                                    
+                                        <Link to='/Forgotpassword' className="text-secondary text-start">Forgot Password?</Link>
 
                                         {/* <p className="text-secondary">Forgot Password?</p> */}
-                                    </div>
-                                    <div className="col col-md-4">
-                                    
-                                    {/* <p className="me-4 text-white">Create Account</p> */}
-                                    </div>
+                                   
                                 </div>
                                 </Form>
                             </div>
@@ -86,11 +82,15 @@ const LoginScreen = () => {
                     </Card>
                 </div>
 
-                <div className="col col-md-5">
-                    <h5 className="text-center p-2 text-primary fw-bold wel-txt">Welcome To e-Society Administrator Portal</h5>
-                    <p className="instructions">please enter your verified credentials to login to our system.</p>
-                    <img src={auth} alt="auth" className="auth-img"/>
-                    <Link to='/RegisterScreen' className="me-4 text-secondary text-center login-acc">Create Society </Link>
+                <div className="col col-md-5 d-flex">
+                    <div className="right-container-login mx-auto my-auto">
+                        <h5 className="text-center p-2 text-primary fw-bold wel-txt">Welcome To e-Society Administrator Portal</h5>
+                        <p className="instructions">please enter your verified credentials to login to our system.</p>
+                        <img src={auth} alt="auth" className="auth-img"/>
+                        <p className="text-secondary text-center login-acc">Don't have an account? <Link to='/RegisterScreen' className="ms-3 mt-3 text-primary text-center login-acc">Create Society </Link></p>
+                        
+                    </div>
+                    
                     {/* <p className="me-4 text-secondary text-center login-acc">Create Account</p> */}
                 </div>
             </div>
@@ -98,7 +98,7 @@ const LoginScreen = () => {
 
     </Container>
 
-  </>;
+  </div>;
 };
 
 export default LoginScreen;
