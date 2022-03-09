@@ -1,18 +1,26 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card} from 'react-bootstrap';
+import {Card,Button,Modal} from 'react-bootstrap';
 import '../../../Styles/AboutSocietyScreen.css';
 
 const AboutSociety = () => {
-  return <>
-      <div className="notification text-end p-4">
-          <i class="bi bi-bell-fill not-icon text-white"></i>
-      </div>
-      
-      <h4 className="fw-bold p-4 text-secondary header">ABOUT SOCIETY</h4>
+  
+  // modal
+  const [show, setShow] = React.useState(false);
 
-      <div className="container-xl m-5">
-        <Card className="w-75 society-det-con">
+  const handleClose = () => setShow(false);
+  const handleShowModal = () => setShow(true);
+  // end of modal 
+
+  return <div className="container-fluid about-society-main-container">
+      {/* <div className="notification text-end p-4">
+          <i class="bi bi-bell-fill not-icon text-white"></i>
+      </div> */}
+      
+      <h4 className="fw-bold p-4 text-secondary header mt-3">ABOUT SOCIETY</h4>
+
+      <div className="container-xl m-1">
+        <Card className="w-100 society-det-con p-3">
           <Card.Body>
             <div className="society-name-con">
                 <div className="container-xl icon">
@@ -48,15 +56,35 @@ const AboutSociety = () => {
                   </div>
                 </div>
                 
-                <div className="notification text-end p-4">
-                  <i class="bi bi-share-fill not-icon text-white"></i>
-              </div>
+                {/* <Button type="button" onClick={handleShowModal}> */}
+                  <div className="share-society-code-con d-flex" onClick={handleShowModal}>
+                    <i class="bi bi-share-fill text-white share-icon"></i>
+                  </div>
+                {/* </Button> */}
+
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title className="text-danger">SHARE SOCIETY ACCESS TOKEN</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                     <p className="lead">You are about to share society access token/society code.</p> 
+                     <div className="modal-icons">
+                        <i class="bi bi-whatsapp text-success media-icon"></i>
+                        <i class="ps-4 ms-2 bi bi-envelope-fill media-icon text-success"></i>
+                        <i class="ps-4 ms-2 bi bi-chat-left-text-fill media-icon text-success"></i>
+                     </div>
+                    </Modal.Body>
+
+                      
+                      
+                  </Modal>
+                
                 
             </div>
           </Card.Body>
         </Card>
       </div>
-  </>;
+  </div>;
 };
 
 export default AboutSociety;
