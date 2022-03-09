@@ -5,6 +5,8 @@
     background-size: cover;
   } */
   .forgot-main-container{
+    height:100vh;
+    width:100vw;
     background: #000957;
     background: linear-gradient(160deg,#000957 0%, #2fa4ff 40%, #0e3eda 80%);
     background: -webkit-linear-gradient(160deg,#000957 0%, #2fa4ff 40%, #0e3eda 80%);
@@ -18,17 +20,23 @@
     align-content: center;
     height: 100vh;
   }
+
   .bg-con{
     border-radius: 1rem;
   }
-  
+
+  .forgot-con-2{
+    width: 100vw;
+    height:100vh;
+    background-color: #000;
+  }
   
  .con-forgot{
-    background-color: transparent;
     border-radius: 1rem;
     border: none;
     border-width: none;
     height: 60vh;
+    width: 50vw;
   }
   
   .proj-name{
