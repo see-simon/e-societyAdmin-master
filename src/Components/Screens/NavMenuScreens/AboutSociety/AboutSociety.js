@@ -75,8 +75,6 @@ const AboutSociety = () => {
                      </div>
                     </Modal.Body>
 
-                      
-                      
                   </Modal>
                 
                 
