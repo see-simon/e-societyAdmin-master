@@ -4,27 +4,35 @@ import { db } from '../../../../firebase';
 import Table from "react-bootstrap/Table";
 const NewPaymentScreen = () => {
   const [Payment, setPayment] = useState([]);
+  const [bookings, setBookings] = useState([]);
+  const [Firstname,setFirstname]=useState('')
 
   // useEffect(()=>{
   //   db.ref('payment').on("value",(snapshot)=>{
   //     setPayment({
-  //           ...snapshot.val(),
+  //           ...snapshot.val(), 
   //       })
         
   //   })
   //   console.log(Payment," simon thobejane")
   // },[])
 
-  useEffect (() => {
-    db.ref('payment').once('value')
-    .then(snapshot => {
-    //console.log('User data: ', snapshot.val());
-    setPayment(snapshot.val())
-  
-  })
+  useEffect(()=>{
+    // db.ref(`/payment/`).on('value',snap=>{
+      
+    //   setFirstname(snap.val() && snap.val().Firstname);
 
-},[])
-console.log(Payment)
+
+    // })
+    db.ref('payment').on('value',snap=>{
+      
+      setPayment({...snap.val() });
+      
+
+    }) 
+  },[])
+
+console.log(bookings,'simom')
   return (
     <div className="container-fluid m-0 bg-light pt-3"> 
     <div className="container-fluid">
@@ -35,6 +43,7 @@ console.log(Payment)
       </div>  
 
       <div className="row">
+       
         <div className="col col-md-2 bg-light pay-table">Member ID</div>
         <div className="col col-md-2 bg-light pay-table">Name</div>
         <div className="col col-md-2 bg-light pay-table">Email</div>
@@ -43,16 +52,18 @@ console.log(Payment)
         <div className="col col-md-2 bg-light pay-table">Payment Date</div>
       </div>
 
-      {
-        Payment.map((element) => 
+    
+
+       {/* {
+        Payment.map((id,element) => 
         <h1>
-          {element.name}
+          {element[id].Price}
         </h1>
         )
-      }
+      }  */}
       <div className="container m-0 p-2 h-75 w-100">
         
-          {/* {Payment ? (
+          {Payment ? (
         <Table
           striped
           bordered
@@ -77,13 +88,13 @@ console.log(Payment)
               <tr key={payment.id}>
               <>
                 <>
-                  <td>{payment[id].uid}</td>
-                  <td>{payment[id].name}</td>
-                  <td>{payment[id].email}</td>
+                  <td>{Payment[id].uid}</td>
+                  <td>{Payment[id].name}</td>
+                  <td>{Payment[id].email}</td>
                   
-                  <td>{payment[id].eventtype}</td>
-                  <td>{payment[id].fee}</td>
-                  <td>{payment[id].Cdate}</td>
+                  <td>{Payment[id].eventtype}</td>
+                  <td>{Payment[id].fee}</td>
+                  <td>{Payment[id].Cdate}</td>
                   
                  
                   
@@ -104,7 +115,7 @@ console.log(Payment)
             </div>
           </div>
         </div>
-      )} */}
+      )}
 
       </div>
 

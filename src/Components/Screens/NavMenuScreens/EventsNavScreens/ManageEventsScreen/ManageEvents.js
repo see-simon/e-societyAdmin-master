@@ -21,7 +21,7 @@ const ManageEvents = () => {
   const [selector,setSelector]=useState()
   const [Price,setPrice]=useState('')
   const user = auth.currentUser.uid
-  const [EventType,setEventType] = useState({});
+  const [EventType,setEventType] = useState([]);
   useEffect(()=>{
     db.ref(`/user/`+ user).on('value',snap=>{
       
