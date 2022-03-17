@@ -68,6 +68,12 @@ const SideNavBar = () => {
                                     </div>
                                     Payments
                                 </a>
+                                {/* <button className="btn btn-danger" onClick={handleLogout}>
+                                    <div className="icons">
+                                            <i class="bi bi-box-arrow-right"></i>
+                                    </div>
+                                    Logout
+                            </button> */}
                         </li>
 
                         <li className="p-0 m-0 list-down" id="account">

@@ -20,15 +20,24 @@ const StatusTD = styled.td`
 `;
 const AddEventsScreen = () => {
   const [events,setEvents]=useState('')
-    const [fee,setFee]=useState('')
+    const [price,setFee]=useState('')
     const [description,setDescription]=useState('')
     const [location,setLocation]=useState('')
     const [date,setDate]=useState('')
     const [time,setTime]=useState('')
   const [bookings, setBookings] = useState([]);
   const [Firstname,setFirstname]=useState('')
+  const [code, setCode] = useState('')
   const user = auth.currentUser.uid
+
+  
+
   useEffect(()=>{
+
+    db.ref('/user/' +user).on('value', snap=>{
+      setCode(snap.val() && snap.val().societyCode)
+    })
+
     db.ref(`/user/`+ user).on('value',snap=>{
       
       setFirstname(snap.val() && snap.val().Firstname);
@@ -44,6 +53,7 @@ const AddEventsScreen = () => {
   },[])
   let currentId = useParams();
   const {id}=currentId;
+  console.log(code,"hfhbjvfhjjdc")
   
   const updateBooking = (bookingNumb, status) => {
 
@@ -111,16 +121,27 @@ const AddEventsScreen = () => {
               <th>Time</th>
               <th>Location</th>
               <th>Status</th>
+              <th>Accept</th>
+              <th>Reject</th>
             </tr>
           </thead>
           <tbody>
             {Object.keys(bookings).map((id,booking) => (
+
+           
+
+
+
+  
+
               <tr key={booking.id}>
+                {code == bookings[id].societyCode?(
               <>
-                <>
+              
+               
                   <td>{id}</td>
                   <td>{bookings[id].events}</td>
-                  <td>{bookings[id].fee}</td>
+                  <td>{bookings[id].price}</td>
                   
                   <td>{bookings[id].Description}</td>
                   <td>{bookings[id].date}</td>
@@ -154,9 +175,13 @@ const AddEventsScreen = () => {
                   ) : (
                     <></>
                   )}
+                  
+                 
                 </>
-                </>
+                 ):(<h1></h1>)}
+                 
               </tr>
+             
             ))}
           </tbody>
         </Table>

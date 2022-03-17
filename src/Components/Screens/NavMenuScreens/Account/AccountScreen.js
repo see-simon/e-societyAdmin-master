@@ -14,14 +14,21 @@ const AccountScreen = () => {
   const passwordRef=useRef()
   const [Firstname,setFirstname]=useState('')
     const [Phonenumber,setPhonenumber]=useState('')
+    const [name, setName] = useState('');
+
   const {currentUser,updateEmail,updatePassword}=useAuth()
   const [error,setError]=useState('')
   const user = auth.currentUser.uid
+
+  const [code , setCode] = useState('')
+
   useEffect(()=>{
     db.ref(`/user/`+ user).on('value',snap=>{
       
       setFirstname(snap.val() && snap.val().Firstname);
   setPhonenumber(snap.val().Phonenumber)
+  setCode(snap.val().societyCode)
+setName(snap.val().SocietyName)
 
     })
     
@@ -56,6 +63,8 @@ const AccountScreen = () => {
   const handleClose = () => setShow(false);
   const handleShowModal = () => setShow(true);
 
+
+
   return <div className="container-fluid account-main-container m-0 p-0">
       <h4 className="fw-bold p-4 text-secondary">ACCOUNT DETAILS</h4>
 
@@ -65,9 +74,9 @@ const AccountScreen = () => {
             <div className="mb-4 mt-5 w-75 input-in">
             {error && <Alert variant="danger">{error}</Alert>}
                   <label for="exampleInputEmail1" class="form-label acc-label">Society Pin</label>
-                  <div className="acc-icon-input"><i class="bi bi-person-fill"></i></div>
+                  <div className="acc-icon-input"> </div>
                   <input type="email" 
-                  class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder={Firstname}></input>
+                  class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder={code}></input>
               </div>
 
               <div className="mb-4 mt-2 w-75 input-in">
@@ -78,9 +87,9 @@ const AccountScreen = () => {
               </div>
 
               <div className="mb-4 mt-2 w-75 input-in">
-                  <label for="exampleInputEmail1" class="form-label acc-label">Phone Number</label>
-                  <div className="acc-icon-input"><i class="bi bi-telephone-fill"></i></div>
-                  <input type="tel" class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder={Phonenumber}></input>
+                  <label for="exampleInputEmail1" class="form-label acc-label">Society Name</label>
+                  <div className="acc-icon-input"><i class="bi bi-person-fill"></i> </div>
+                  <input type="tel" class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder={name}></input>
               </div>
 
               <div className="mb-4 mt-2 w-75 input-in">

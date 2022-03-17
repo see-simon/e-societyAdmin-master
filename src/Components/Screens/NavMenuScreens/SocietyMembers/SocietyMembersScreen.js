@@ -3,19 +3,38 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card} from 'react-bootstrap';
 import '../../../Styles/SocietyMembers.css'
 import { useHistory,useParams} from 'react-router-dom';
-import { db } from '../../../../firebase';
+import { db ,auth} from '../../../../firebase';
 const SocietyMembersScreen = () => {
   let currentId = useParams();
     const {id}=currentId;
   const [user,setUser] = useState({});
+  const [code, setCode] = useState('')
+  const users = auth.currentUser.uid;
+
+  useEffect(() => {
+    db.ref(`/user/` + users).on("value", (snap) => {
+      setCode(snap.val().societyCode);
+     
+    });
+   
+   
+  }, []);
+
+  console.log(code,"code")
+  
+
   useEffect(()=>{
-      db.ref('/user/').on("value",(snapshot)=>{
+  
+      db.ref('/societyUser/').on("value",(snapshot)=>{
           setUser({
               ...snapshot.val(),
-          })
-          
+          })  
       })
   },[]);
+
+  console.log(user,"user")
+  
+
   return <div className="container-fluid society-main-container">
 
       <div className="notification text-center p-4 mt-2 d-flex mx-auto">
@@ -33,19 +52,25 @@ const SocietyMembersScreen = () => {
         
           { Object.keys(user).map((id,index)=>{
               return(
+                
                 <>
-                <Card className="w-75 m-auto member-con mt-2">
-          <Card.Body className="bg-light">
-            <div className="container-xl">
-            <i class="bi bi-person-fill text-secondary mem-icon"></i>
-               
-                <p className="d-inline-block ps-3">{user[id].Firstname}</p>
-                <p className="ps-1 mem-email">{user[id].email}</p>
-              
-            </div>
-            <i class="bi bi-chevron-right mem-info-con"></i>
-            </Card.Body>
-        </Card>
+                {code == user[id].societyCode?(
+                  <Card className="w-75 m-auto member-con mt-2">
+                 <Card.Body className="bg-light">
+                   <div className="container-xl">
+                   <i class="bi bi-person-fill text-secondary mem-icon"></i>
+                      
+                       <p className="d-inline-block ps-3">{user[id].name} {user[id].surname}</p>
+                       {/* <p className="ps-1 mem-email">{user[id].email}</p> */}
+                     
+                   </div>
+                   <i class="bi bi-chevron-right mem-info-con"></i>
+                   </Card.Body>
+               </Card>
+                ):(<h1></h1>)}
+
+
+           
             </>
             )
             

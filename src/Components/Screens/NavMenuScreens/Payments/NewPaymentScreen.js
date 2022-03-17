@@ -1,21 +1,23 @@
 import React ,{useEffect,useState}from 'react';
 import '../Payments/style.css';
-import { db } from '../../../../firebase';
+import { db,auth } from '../../../../firebase';
 import Table from "react-bootstrap/Table";
 const NewPaymentScreen = () => {
   const [Payment, setPayment] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [Firstname,setFirstname]=useState('')
 
-  // useEffect(()=>{
-  //   db.ref('payment').on("value",(snapshot)=>{
-  //     setPayment({
-  //           ...snapshot.val(), 
-  //       })
-        
-  //   })
-  //   console.log(Payment," simon thobejane")
-  // },[])
+  const [code, setCode] = useState('')
+  const users = auth.currentUser.uid;
+
+  useEffect(() => {
+    db.ref(`/user/` + users).on("value", (snap) => {
+      setCode(snap.val().societyCode);
+     
+    });
+   
+   
+  }, []);
 
   useEffect(()=>{
     // db.ref(`/payment/`).on('value',snap=>{
@@ -42,7 +44,7 @@ console.log(bookings,'simom')
           <input type="email" class="form-control" id="userEmailAccount" aria-describedby="userEmail" placeholder='Search members payments'></input>
       </div>  
 
-      <div className="row">
+      {/* <div className="row">
        
         <div className="col col-md-2 bg-light pay-table">Member ID</div>
         <div className="col col-md-2 bg-light pay-table">Name</div>
@@ -50,7 +52,7 @@ console.log(bookings,'simom')
         <div className="col col-md-2 bg-light pay-table">Phone Number</div>
         <div className="col col-md-2 bg-light pay-table">Amount Paid</div>
         <div className="col col-md-2 bg-light pay-table">Payment Date</div>
-      </div>
+      </div> */}
 
     
 
@@ -86,19 +88,23 @@ console.log(bookings,'simom')
           <tbody>
             {Object.keys(Payment).map((id,payment) => (
               <tr key={payment.id}>
+                
               <>
+              {code == Payment[id].societyCode?(
                 <>
+                
                   <td>{Payment[id].uid}</td>
                   <td>{Payment[id].name}</td>
                   <td>{Payment[id].email}</td>
                   
                   <td>{Payment[id].eventtype}</td>
-                  <td>{Payment[id].fee}</td>
+                  <td>R {Payment[id].price}</td>
                   <td>{Payment[id].Cdate}</td>
                   
                  
                   
                 </>
+                ):(<h1></h1>)}
                 </>
               </tr>
             ))}
@@ -109,7 +115,7 @@ console.log(bookings,'simom')
           <div className="row my-5">
             <div className="col-md-6 col-12 mx-auto">
               <div className="card shadow-lg border-0 p-4 error">
-                <h1 className="text-center display-4">No bookings.</h1>
+                <h1 className="text-center display-4">No payments.</h1>
                 
               </div>
             </div>
