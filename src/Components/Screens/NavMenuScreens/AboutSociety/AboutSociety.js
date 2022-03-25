@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Button, Modal } from "react-bootstrap";
 import "../../../Styles/AboutSocietyScreen.css";
 import { db, auth } from "../../../../firebase";
+
+import emailjs from '@emailjs/browser';
+
 
 const AboutSociety = () => {
   // modal
@@ -28,6 +31,19 @@ const AboutSociety = () => {
   }, []);
 
   console.log(name,"name")
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_ygavo3m', 'template_uc4qcev', form.current, 'TIORF9RNPSLNn6teW')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
 
   return (
     <div className="container-fluid about-society-main-container">
@@ -103,14 +119,45 @@ const AboutSociety = () => {
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <p className="lead">
+                   <p className="lead">
                     You are about to share society access token/society code.
                   </p>
-                  <div className="modal-icons">
+                  {/*<div className="modal-icons">
                     <i class="bi bi-whatsapp text-success media-icon"></i>
                     <i class="ps-4 ms-2 bi bi-envelope-fill media-icon text-success"></i>
                     <i class="ps-4 ms-2 bi bi-chat-left-text-fill media-icon text-success"></i>
-                  </div>
+                  </div> */}
+
+                  <form style={{ flex: 1}} ref={form} onSubmit={sendEmail}>
+                    <div className= "container-xl bg-light w-100 p-0 m-0">
+                      <div className="d-flex pb-2">
+
+                      <div className="d-block me-2">
+                        <label className="d-block">Name</label>
+                        <input type="text" name="user_name" className="w-100"/>
+                      </div>
+
+                      <div className="d-block">
+                        <label className="d-block">Email</label>
+                        <input type="email" name="user_email" className="w-100"/>
+                      </div>  
+                        
+                      </div>
+                      
+
+                      <div className="d-block w-100 bg-primary me-5">
+                        <label className="d-block">Message</label>
+                        <textarea name="message" className="w-100 ps-2 pt-2" placeholder="Enter your message here.."/>
+                      </div>
+
+                      <div className="pt-3">
+                        <input type="submit" value="Send" className="w-50 btn-primary p-0 m-0"/>
+                      </div>
+
+                    </div>
+                    
+                  </form>
+    
                 </Modal.Body>
               </Modal>
             </div>
