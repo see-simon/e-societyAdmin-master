@@ -52,14 +52,14 @@ const SideNavBar = () => {
                                 </a>
                         </li>
 
-                        <li className="p-0 m-0 list-down" id="reports">
+                        {/* <li className="p-0 m-0 list-down" id="reports">
                             <a href="/reports">
                                     <div className="icon">
                                         <i class="bi bi-file-pdf-fill nav-icons"></i>
                                     </div>
                                     Reports
                                 </a>
-                        </li>
+                        </li> */}
 
                         <li className="p-0 m-0 list-down" id="payments">
                             <a href="/newPayments">
