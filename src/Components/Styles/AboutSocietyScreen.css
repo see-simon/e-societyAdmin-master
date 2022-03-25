@@ -68,6 +68,15 @@
     top: 1px;
 }
 
+#code {
+    pointer-events: none;
+    border:none !important;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 500;
+    height: 60px;
+}
+
 .share-icon{
     text-align: center;
     align-items: center;
@@ -84,4 +93,11 @@
 
 .media-icon{
     font-size: 2rem;
+}
+
+#code-btn{
+    background-color: #0225A2;
+    color: white;
+    height: 40px;
+    /* margin-top: -20px; */
 }

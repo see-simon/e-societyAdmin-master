@@ -119,9 +119,12 @@ const AboutSociety = () => {
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                   <p className="lead">
+                  <div className="d-flex m-0 p-0">
+                  <p className="lead mx-auto m-0 p-0">
                     You are about to share society access token/society code.
                   </p>
+                  </div>
+                  
                   {/*<div className="modal-icons">
                     <i class="bi bi-whatsapp text-success media-icon"></i>
                     <i class="ps-4 ms-2 bi bi-envelope-fill media-icon text-success"></i>
@@ -130,14 +133,14 @@ const AboutSociety = () => {
 
                   <form style={{ flex: 1}} ref={form} onSubmit={sendEmail}>
                     <div className= "container-xl bg-light w-100 p-0 m-0">
-                      <div className="d-flex pb-2">
+                      <div className="d-flex pt-2 m-0">
 
-                      <div className="d-block me-2">
+                      <div className="d-block me-2 w-100">
                         <label className="d-block">Name</label>
                         <input type="text" name="user_name" className="w-100"/>
                       </div>
 
-                      <div className="d-block">
+                      <div className="d-block w-100">
                         <label className="d-block">Email</label>
                         <input type="email" name="user_email" className="w-100"/>
                       </div>  
@@ -145,13 +148,20 @@ const AboutSociety = () => {
                       </div>
                       
 
-                      <div className="d-block w-100 bg-primary me-5">
-                        <label className="d-block">Message</label>
-                        <textarea name="message" className="w-100 ps-2 pt-2" placeholder="Enter your message here.."/>
+                      <div className="pe-4">
+                      <div className="d-block w-100 pe-5">
+                        <label className="d-none">Message</label>
+                        <textarea name="message" id="code" className="w-100 h-0 ps-2 pt-2 me-5" 
+                        placeholder={code}
+                        // disabled
+                        value={code}
+                        />
                       </div>
+                      </div>
+                     
 
-                      <div className="pt-3">
-                        <input type="submit" value="Send" className="w-50 btn-primary p-0 m-0"/>
+                      <div className="p-0 m-0 d-flex">
+                        <input type="submit" value="Send" className="w-50 btn p-0 mx-auto m-0" id="code-btn"/>
                       </div>
 
                     </div>
